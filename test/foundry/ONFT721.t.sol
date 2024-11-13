@@ -149,4 +149,13 @@ contract MyONFT721Test is TestHelperOz5 {
         assertEq(composer.executor(), address(this));
         assertEq(composer.extraData(), composerMsg_); // default to setting the extraData to the message as well to test
     }
+
+    function test_tokenURI() public {
+        assertEq(aONFT721.tokenURI(0), "https://hello.com/0");
+    }
+
+    function test_initialize_state() public {
+        assertEq(aONFT721.balanceOf(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4), 1);
+        assertEq(bONFT721.ownerOf(1), 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4);
+    }
 }

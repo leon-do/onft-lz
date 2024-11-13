@@ -2,6 +2,7 @@
 pragma solidity ^0.8.22;
 
 import { ONFT } from "../ONFT.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 // @dev WARNING: This is for testing purposes only
 contract MyONFT721Mock is ONFT {
