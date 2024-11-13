@@ -5,12 +5,12 @@ import { deployments, ethers } from 'hardhat'
 
 import { Options } from '@layerzerolabs/lz-v2-utilities'
 
-describe('MyONFT721 Test', function () {
+describe('ONFT Test', function () {
     // Constant representing a mock Endpoint ID for testing purposes
     const eidA = 1
     const eidB = 2
     // Declaration of variables to be used in the test suite
-    let MyONFT721: ContractFactory
+    let ONFT: ContractFactory
     let EndpointV2Mock: ContractFactory
     let ownerA: SignerWithAddress
     let ownerB: SignerWithAddress
@@ -25,7 +25,7 @@ describe('MyONFT721 Test', function () {
         // Contract factory for our tested contract
         //
         // We are using a derived contract that exposes a mint() function for testing purposes
-        MyONFT721 = await ethers.getContractFactory('MyONFT721Mock')
+        ONFT = await ethers.getContractFactory('MyONFT721Mock')
 
         // Fetching the first three signers (accounts) from Hardhat's local Ethereum network
         const signers = await ethers.getSigners()
@@ -52,14 +52,14 @@ describe('MyONFT721 Test', function () {
         mockEndpointV2B = await EndpointV2Mock.deploy(eidB)
 
         // Deploying two instances of MyOFT contract with different identifiers and linking them to the mock LZEndpoint
-        myONFT721A = await MyONFT721.deploy('aONFT721', 'aONFT721', mockEndpointV2A.address, ownerA.address)
-        myONFT721B = await MyONFT721.deploy('bONFT721', 'bONFT721', mockEndpointV2B.address, ownerB.address)
+        myONFT721A = await ONFT.deploy('aONFT721', 'aONFT721', mockEndpointV2A.address, ownerA.address)
+        myONFT721B = await ONFT.deploy('bONFT721', 'bONFT721', mockEndpointV2B.address, ownerB.address)
 
-        // Setting destination endpoints in the LZEndpoint mock for each MyONFT721 instance
+        // Setting destination endpoints in the LZEndpoint mock for each ONFT instance
         await mockEndpointV2A.setDestLzEndpoint(myONFT721B.address, mockEndpointV2B.address)
         await mockEndpointV2B.setDestLzEndpoint(myONFT721A.address, mockEndpointV2A.address)
 
-        // Setting each MyONFT721 instance as a peer of the other in the mock LZEndpoint
+        // Setting each ONFT instance as a peer of the other in the mock LZEndpoint
         await myONFT721A.connect(ownerA).setPeer(eidB, ethers.utils.zeroPad(myONFT721B.address, 32))
         await myONFT721B.connect(ownerB).setPeer(eidA, ethers.utils.zeroPad(myONFT721A.address, 32))
     })

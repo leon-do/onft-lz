@@ -62,9 +62,9 @@ const config: HardhatUserConfig = {
             url: process.env.RPC_URL_FUJI || 'https://rpc.ankr.com/avalanche_fuji',
             accounts,
         },
-        'amoy-testnet': {
-            eid: EndpointId.AMOY_V2_TESTNET,
-            url: process.env.RPC_URL_AMOY || 'https://polygon-amoy-bor-rpc.publicnode.com',
+        'zircuit-testnet': {
+            eid: EndpointId.ZIRCUIT_V2_TESTNET,
+            url: process.env.RPC_URL_ZIRCUIT || 'https://zircuit1-testnet.p2pify.com',
             accounts,
         },
     },

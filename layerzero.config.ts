@@ -5,16 +5,16 @@ import type { OAppEdgeConfig, OAppOmniGraphHardhat, OmniPointHardhat } from '@la
 
 const sepoliaContract: OmniPointHardhat = {
     eid: EndpointId.SEPOLIA_V2_TESTNET,
-    contractName: 'MyONFT721',
+    contractName: 'ONFT',
 }
 
 const fujiContract: OmniPointHardhat = {
     eid: EndpointId.AVALANCHE_V2_TESTNET,
-    contractName: 'MyONFT721',
+    contractName: 'ONFT',
 }
 
-const amoyContract: OmniPointHardhat = {
-    eid: EndpointId.AMOY_V2_TESTNET,
+const zircuitContract: OmniPointHardhat = {
+    eid: EndpointId.ZIRCUIT_V2_TESTNET,
     contractName: 'MyONFT721',
 }
 
@@ -45,7 +45,7 @@ const config: OAppOmniGraphHardhat = {
             contract: sepoliaContract,
         },
         {
-            contract: amoyContract,
+            contract: zircuitContract,
         },
     ],
     connections: [
@@ -56,7 +56,7 @@ const config: OAppOmniGraphHardhat = {
         },
         {
             from: fujiContract,
-            to: amoyContract,
+            to: zircuitContract,
             config: DEFAULT_EDGE_CONFIG,
         },
         {
@@ -66,16 +66,16 @@ const config: OAppOmniGraphHardhat = {
         },
         {
             from: sepoliaContract,
-            to: amoyContract,
+            to: zircuitContract,
             config: DEFAULT_EDGE_CONFIG,
         },
         {
-            from: amoyContract,
+            from: zircuitContract,
             to: sepoliaContract,
             config: DEFAULT_EDGE_CONFIG,
         },
         {
-            from: amoyContract,
+            from: zircuitContract,
             to: fujiContract,
             config: DEFAULT_EDGE_CONFIG,
         },
